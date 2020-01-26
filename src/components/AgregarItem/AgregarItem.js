@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import moment from 'moment';
+import store from '../store/store';
 
 export default class AgregarItem extends Component{
 
@@ -23,11 +24,12 @@ export default class AgregarItem extends Component{
         let fecha= event.target.children[3];// input text con la fecha
 
         //pasa los datos al padre
-        this.props.agregar({
-            nombre: nombre.value, 
-            descripcion: descripcion.value, 
-            fecha: fecha.value,
-            id: this.state.id
+        store.dispatch({
+            type: 'AGREGAR',
+            id: this.state.id,
+            nombre: nombre.value,
+            descripcion: descripcion.value,
+            fecha: fecha.value
         });
 
         this.setState({id: this.state.id + 1});

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Button} from 'reactstrap';
+import store from '../store/store';
 
 export default class Item extends Component{
 
@@ -12,7 +13,10 @@ export default class Item extends Component{
     }
 
     eliminarItem(){
-        this.props.eliminar(this.props.datosItem.id);
+        store.dispatch({
+            type: 'ELIMINAR',
+            id: this.state.datos.id
+        });
     }
     render(){
         return(
