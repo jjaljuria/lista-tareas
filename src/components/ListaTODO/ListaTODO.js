@@ -13,9 +13,16 @@ export default class ListaTODO extends Component{
         };
 
         store.subscribe( () => {
-            this.setState(store.getState());
+            const globalState = store.getState()
+            this.setState(globalState);
+            localStorage.setItem('lista-tareas-react-data', JSON.stringify(globalState))
         });
 
+    }
+
+    componentDidMount(){
+        const globalState = JSON.parse(localStorage.getItem('lista-tareas-react-data'));
+        this.setState(globalState);
     }
 
 

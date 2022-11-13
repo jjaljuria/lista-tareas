@@ -1,21 +1,21 @@
 function todos(state = [], action){
 
-    const aux = state;
+    const aux = [...state.TODOS];
     switch(action.type){
 
         case 'AGREGAR':
             
-            aux.TODOS.push({
+            aux.push({
                 id : action.id,
                 nombre: action.nombre,
                 descripcion: action.descripcion,
                 fecha: action.fecha
             });
             console.log(aux);
-            return aux;
+            return {TODOS: aux};
         case 'ELIMINAR':
 
-            const nuevoState = { TODOS: aux.TODOS.filter(item => item.id !== action.id)};
+            const nuevoState = { TODOS: aux.filter(item => item.id !== action.id)};
             console.log(nuevoState);
             return nuevoState;
         default:
