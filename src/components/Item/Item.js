@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Button} from 'reactstrap';
 import store from '../store/store';
 
 export default class Item extends Component{
@@ -24,7 +23,11 @@ export default class Item extends Component{
                 <td className="col-4 text-break">{this.state.datos.nombre}</td>
                 <td className="col-4 text-break">{this.state.datos.descripcion}</td>
                 <td className="col-2 text-break">{this.state.datos.fecha}</td>
-                <td className="col-2"><Button color="danger" onClick={this.manejadorEliminar}>Eliminar</Button></td>
+                <td className="col-2">
+                    <button className="btn btn-danger" onClick={this.manejadorEliminar} >
+                        <span className="text-break">Eliminar</span>
+                    </button>
+                </td>
             </tr>
         );
     }
