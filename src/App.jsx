@@ -1,18 +1,17 @@
-import React, {Component} from 'react';
-import Item from '../Item/Item.js';
-import AgregarItem from '../AgregarItem/AgregarItem.js'
-import store from '../store/store';
+import Item from './components/Item/Item.jsx';
+import AgregarItem from './components/AgregarItem/AgregarItem.jsx'
+import store from './components/store/store.js';
 
 
-export default class ListaTODO extends Component{
-    constructor(){
+export default class ListaTODO extends Component {
+    constructor() {
         super();
 
         this.state = {
             TODOS: []
         };
 
-        store.subscribe( () => {
+        store.subscribe(() => {
             const globalState = store.getState()
             this.setState(globalState);
             localStorage.setItem('lista-tareas-react-data', JSON.stringify(globalState))
@@ -20,24 +19,24 @@ export default class ListaTODO extends Component{
 
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const globalState = JSON.parse(localStorage.getItem('lista-tareas-react-data'));
         this.setState(globalState);
     }
 
 
-    render(){
+    render() {
 
-        const lista = this.state.TODOS.map((valor, index , array) => {
-            return <Item datosItem={valor} key={valor.id}/>
+        const lista = this.state.TODOS.map((valor, index, array) => {
+            return <Item datosItem={valor} key={valor.id} />
         });
-        
-        return(
+
+        return (
             <section className="container">
                 <h1 className="text-center">Lista de Tareas</h1>
                 <div className='row'>
-                    <article className="col-12"> 
-                        <AgregarItem/>
+                    <article className="col-12">
+                        <AgregarItem />
                         <table className="table">
                             <thead className="thead-dark">
                                 <tr className="text-center row">
@@ -48,7 +47,7 @@ export default class ListaTODO extends Component{
                                 </tr>
                             </thead>
                             <tbody>
-                                {lista} 
+                                {lista}
                             </tbody>
                         </table>
                     </article>
