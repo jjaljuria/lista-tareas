@@ -1,3 +1,4 @@
+import { Component } from 'react'
 import Item from './components/Item/Item.jsx';
 import AgregarItem from './components/AgregarItem/AgregarItem.jsx'
 import store from './components/store/store.js';
