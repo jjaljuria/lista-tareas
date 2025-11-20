@@ -35,26 +35,32 @@ export default function App() {
     });
 
     return (
-        <section className="container">
-            <h1 className="text-center">Lista de Tareas</h1>
-            <div className='row'>
-                <article className="col-12">
-                    <AgregarItem />
-                    <table className="table">
-                        <thead className="thead-dark">
-                            <tr className="text-center row">
-                                <th className="col-4 text-truncate">Nombre</th>
-                                <th className="col-4 text-truncate">Descripcion</th>
-                                <th className="col-2 text-truncate">Fecha</th>
-                                <th className="col-2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {lista}
-                        </tbody>
-                    </table>
-                </article>
+        <>
+            <h1 className="text-center mb-3">Lista de Tareas</h1>
+            <div className="container">
+                <div className='row'>
+                    <section className="col-12 col-md-6">
+                        <AgregarItem />
+                    </section>
+
+                    <section className='col-12 col-md-6'>
+                        <table className="table">
+                            <thead className="thead-dark">
+                                <tr className="text-center row">
+                                    <th className="col-4 text-truncate">Nombre</th>
+                                    <th className="col-4 text-truncate">Descripcion</th>
+                                    <th className="col-2 text-truncate">Fecha</th>
+                                    <th className="col-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {lista}
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
             </div>
-        </section>
+
+        </>
     );
 }
