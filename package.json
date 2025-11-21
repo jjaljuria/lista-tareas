@@ -9,7 +9,8 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "reactstrap": "^9.2.3",
-    "redux": "^5.0.1"
+    "redux": "^5.0.1",
+    "uuid": "^13.0.0"
   },
   "scripts": {
     "dev": "vite",

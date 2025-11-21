@@ -1,68 +1,75 @@
-import React, {Component} from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { v7 } from 'uuid'
 import moment from 'moment';
 import store from '../store/store';
 
-export default class AgregarItem extends Component{
+export default function AgregarItem() {
 
-    constructor(props){
+    const nombreRef = useRef(null);//input text debajo del boton con el nombre
+    const descripcionRef = useRef(null);//input text con la descripcion
+    const fechaRef = useRef(null);// input text con la fecha
+    const [newTask, setNewTask] = useState({
+        id: '',
+        descripcion: '',
+        fecha: ''
+    });
 
-        super(props);
 
-        this.manejadorFormulario = this.ValidarTarea.bind(this);
-        this.manejadorFecha = this.validarFecha.bind(this);
+    const manejadorFormulario = (e) => {
 
-        this.refFecha = React.createRef();
-        this.state = {fecha: '', id: 0};
-    }
+        e.preventDefault();
 
-    ValidarTarea(event){
+        const nombre = nombreRef.current.value
+        const descripcion = descripcionRef.current.value
+        const fecha = fechaRef.current.value
 
-        event.preventDefault();
-        
-        let nombre = event.target.children[1];//input text debajo del boton con el nombre
-        let descripcion = event.target.children[2];//input text con la descripcion
-        let fecha= event.target.children[3];// input text con la fecha
+        const newId = v7()
+
+        setNewTask({
+            id: newId,
+            fecha,
+            descripcion
+        })
 
         //pasa los datos al padre
         store.dispatch({
             type: 'AGREGAR',
-            id: this.state.id,
-            nombre: nombre.value,
-            descripcion: descripcion.value,
-            fecha: fecha.value
+            id: newId, // Usar el nuevo ID al despachar la acción
+            nombre,
+            descripcion,
+            fecha,
         });
 
-        this.setState({id: this.state.id + 1});
-        nombre.value = '';
-        descripcion.value = '';
-        fecha.value = this.state.fecha;
+        nombreRef.current.value = '';
+        descripcionRef.current.value = '';
+        fechaRef.current.value = newTask.fecha;
     }
 
-    componentDidMount(){
-        this.setState({fecha: moment().format('YYYY-MM-DD')});
-        this.refFecha.current.value = moment().format('YYYY-MM-DD');
+    useEffect(() => {
+        const now = moment().format('YYYY-MM-DD')
+        setNewTask({ ...newTask, fecha: now })
+        fechaRef.current.value = now
+    }, [])
+
+    const manejadorFecha = (e) => {
+        if (e.target.value === '') {
+            e.target.value = newTask.fecha;
+        }
+
+        if (e.target.value < newTask.fecha) {
+            e.target.value = newTask.fecha;
+            alert('No puede ser una fecha pasada');
+        }
     }
 
-    validarFecha(evento){
-       if(evento.target.value === ''){
-           evento.target.value = this.state.fecha;
-       }
 
-       if(evento.target.value < this.state.fecha){
-           evento.target.value = this.state.fecha;
-           alert('No puede ser una fecha pasada');
-       }
-    }
 
-    render(){
-
-        return(
-            <form className="d-flex flex-column flex-md-row justify-content-center my-4 row mx-1" onSubmit={this.manejadorFormulario}>
-                <button type="submit" className="btn btn-primary order-4 order-md-1 mr-md-2 col-12 col-md-2">Agregar Tarea</button>
-                <input type="text" placeholder="Nombre" className="order-1 mb-2 mb-md-0 mr-md-2 col-12 col-md-3 form-control" required maxLength="50"></input>
-                <input type="text" placeholder="Descripcion" className="order-2 mb-2 mb-md-0 mr-md-2 col-12 col-md-3 form-control" required maxLength="50"></input>
-                <input type="date" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" placeholder="Fecha" className="order-3 mb-2 mb-md-0 col-12 col-md-3 form-control" ref={this.refFecha} onChange={this.manejadorFecha}></input>
-            </form>
-        );
-    }
+    return (
+        <form role="form" className="d-flex flex-column flex-md-row justify-content-center my-4 row mx-1" onSubmit={manejadorFormulario}>
+            <button type="submit" className="btn btn-primary order-4 order-md-1 mr-md-2 col-12 col-md-2" > Agregar Tarea</ button>
+            <input type="text" placeholder="Nombre" className="order-1 mb-2 mb-md-0 mr-md-2 col-12 col-md-3 form-control" required maxLength="50" ref={nombreRef}></input>
+            <input type="text" placeholder="Descripcion" className="order-2 mb-2 mb-md-0 mr-md-2 col-12 col-md-3 form-control" required maxLength="50" ref={descripcionRef}></input>
+            <input type="date" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" placeholder="Fecha" className="order-3 mb-2 mb-md-0 col-12 col-md-3 form-control" ref={fechaRef} onChange={manejadorFecha}></input>
+        </form >
+    );
 }
