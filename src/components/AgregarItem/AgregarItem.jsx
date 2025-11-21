@@ -65,11 +65,13 @@ export default function AgregarItem() {
 
 
     return (
-        <form role="form" className="d-flex flex-column flex-md-row justify-content-center my-4 row mx-1" onSubmit={manejadorFormulario}>
-            <button type="submit" className="btn btn-primary order-4 order-md-1 mr-md-2 col-12 col-md-2" > Agregar Tarea</ button>
-            <input type="text" placeholder="Nombre" className="order-1 mb-2 mb-md-0 mr-md-2 col-12 col-md-3 form-control" required maxLength="50" ref={nombreRef}></input>
-            <input type="text" placeholder="Descripcion" className="order-2 mb-2 mb-md-0 mr-md-2 col-12 col-md-3 form-control" required maxLength="50" ref={descripcionRef}></input>
-            <input type="date" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" placeholder="Fecha" className="order-3 mb-2 mb-md-0 col-12 col-md-3 form-control" ref={fechaRef} onChange={manejadorFecha}></input>
+        <form role="form" className="my-1 mx-1" onSubmit={manejadorFormulario}>
+            <div className="row">
+                <input type="text" placeholder="Nombre" className="col-12 col-md-3 form-control" required maxLength="50" ref={nombreRef}></input>
+                <input type="text" placeholder="Descripcion" className="col-12 col-md-3 form-control" required maxLength="50" ref={descripcionRef}></input>
+                <input type="date" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" placeholder="Fecha" className="mb-2 mb-md-0 col-12 col-md-3 form-control" ref={fechaRef} onChange={manejadorFecha}></input>
+                <button type="submit" className="btn btn-primary mt-3" > Agregar Tarea</ button>
+            </div>
         </form >
     );
 }
