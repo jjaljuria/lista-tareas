@@ -30,7 +30,8 @@ export default function App() {
 
 
     const lista = TODOS.map((valor) => {
-        return <Item datosItem={valor} key={valor.id} />
+        console.log({ valor })
+        return <Item datos={valor} key={valor.id} />
     });
 
     return (

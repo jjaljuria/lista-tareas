@@ -17,8 +17,8 @@ describe('Item Component', () => {
         fecha: '2025-11-21',
     };
 
-    test('shouldrenders the item with data correctly', () => {
-        render(<Item datosItem={mockDatosItem} />);
+    test('should renders the item with data correctly', () => {
+        render(<Item datos={mockDatosItem} />);
 
         expect(screen.getByText('Tarea de prueba')).toBeTruthy();
         expect(screen.getByText('Descripción de prueba')).toBeTruthy();
@@ -26,7 +26,7 @@ describe('Item Component', () => {
     });
 
     test('should dispatches the ELIMINAR action when the delete button is clicked', () => {
-        render(<Item datosItem={mockDatosItem} />);
+        render(<Item datos={mockDatosItem} />);
 
         const deleteButton = screen.getByRole('button', { name: /eliminar/i });
         fireEvent.click(deleteButton);
