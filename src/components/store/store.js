@@ -1,14 +1,35 @@
-import { createStore } from 'redux';
-import reducer from '../../reducers/reducer';
+import { create } from 'zustand'
 
+const useTodoStore = create((set) => ({
+    TODOS: [],
+    add: (task) => set((state) => ({ TODOS: [...state.TODOS, task] })),
+    remove: (id) => set((state) => ({ TODOS: state.TODOS.filter((x) => x.id !== id) }))
+}))
 
-const inicial = {
-    TODOS: []
+const store = {
+    getState: () => useTodoStore.getState(),
+    dispatch: (action) => {
+        switch (action.type) {
+            case 'AGREGAR':
+                useTodoStore.getState().add({
+                    id: action.id,
+                    nombre: action.nombre,
+                    descripcion: action.descripcion,
+                    fecha: action.fecha
+                })
+                break
+            case 'ELIMINAR':
+                useTodoStore.getState().remove(action.id)
+                break
+        }
+    },
+
+    subscribe: (listener) => {
+        const unsubscribe = useTodoStore.subscribe((state) => listener(state))
+        return unsubscribe
+    },
+
+    useStore: useTodoStore
 }
 
-const foreignState = JSON.parse(localStorage.getItem('lista-tareas-react-data'));
-const globalState = foreignState || inicial
-
-const store = createStore(reducer, globalState);
-
-export default store;
+export default store
