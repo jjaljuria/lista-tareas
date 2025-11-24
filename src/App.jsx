@@ -47,9 +47,9 @@ export default function App() {
                         <table className="table">
                             <thead className="thead-dark">
                                 <tr className="text-center row">
-                                    <th className="col-4 text-truncate">Nombre</th>
-                                    <th className="col-4 text-truncate">Descripcion</th>
-                                    <th className="col-2 text-truncate">Fecha</th>
+                                    <th className="col text-truncate">Nombre</th>
+                                    <th className="col text-truncate">Descripcion</th>
+                                    <th className="col text-truncate">Fecha</th>
                                     <th className="col-2"></th>
                                 </tr>
                             </thead>

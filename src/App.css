@@ -22,3 +22,25 @@ code {
         font-size: 13px;
     }
 }
+
+/* Estilo para la tarea que se está completando (desvanecimiento) */
+.completing-task {
+    opacity: 0.5;
+    transform: scale(0.98);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Estilo para el checkbox (redondo y verde) */
+.custom-check-input {
+    border-radius: 50% !important;
+    /* Hace el checkbox redondo */
+    border-color: #28a745 !important;
+    /* Borde verde por defecto */
+}
+
+/* Estilo para el checkbox cuando está marcado */
+.custom-check-input:checked {
+    background-color: #28a745 !important;
+    /* Verde de éxito de Bootstrap */
+    border-color: #28a745 !important;
+}

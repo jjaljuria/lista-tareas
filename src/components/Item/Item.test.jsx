@@ -26,15 +26,21 @@ describe('Item Component', () => {
     });
 
     test('should dispatches the ELIMINAR action when the delete button is clicked', () => {
+        vi.useFakeTimers()
         render(<Item datos={mockDatosItem} />);
 
-        const deleteButton = screen.getByRole('button', { name: /eliminar/i });
+        const deleteButton = screen.getByRole('checkbox');
         fireEvent.click(deleteButton);
+
+        vi.advanceTimersByTime(500)
 
         expect(store.dispatch).toHaveBeenCalledWith({
             type: 'ELIMINAR',
             id: 1,
         });
+
+        vi.useRealTimers()
+        vi.clearAllMocks()
     });
 
     test.skip('should not dispatch if id is null', () => {
@@ -45,7 +51,7 @@ describe('Item Component', () => {
 
         render(<Item datosItem={mockDatosItemWithoutId} />);
 
-        const deleteButton = screen.getByRole('button', { name: /eliminar/i });
+        const deleteButton = screen.getByRole('checkbox');
         fireEvent.click(deleteButton);
 
         expect(store.dispatch).not.toHaveBeenCalled();
