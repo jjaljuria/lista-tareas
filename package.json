@@ -14,7 +14,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "vitest"
+    "test": "vitest",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": "react-app"
