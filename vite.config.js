@@ -7,4 +7,5 @@ export default defineConfig({
         environment: 'happy-dom', // or 'node'
         globals: true, // para usar funciones como 'expect' globalmente sin importar
     },
+    base: './'
 })
