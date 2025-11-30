@@ -20,6 +20,8 @@ jobs:
               with:
                     node-version: '22.19.0'
                     cache: 'pnpm'
+                    package-manager: 'pnpm'
+                    registry-url: 'https://registry.npmjs.org'
             
             - name: "Instalar dependencias"
               run: |
