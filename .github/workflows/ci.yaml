@@ -20,13 +20,12 @@ jobs:
               with:
                     node-version: '22.19.0'
                     cache: 'pnpm'
-                    package-manager: 'pnpm'
-                    registry-url: 'https://registry.npmjs.org'
             
-            - name: "Instalar dependencias"
-              run: |
-                npm install -g pnpm # Esto instala el gestor de paquetes pnpm
-                pnpm install --frozen-lockfile
+            - name: "Instalar pnpm"
+              run: npm install -g pnpm
+
+            - name: "Instalar dependencias del proyecto"
+              run: pnpm install --frozen-lockfile
 
             - name: "Contruir la aplicación"
               run: pnpm run build
