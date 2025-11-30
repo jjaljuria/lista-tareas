@@ -22,7 +22,9 @@ jobs:
                     cache: 'pnpm'
             
             - name: "Instalar dependencias"
-              run: pnpm install -g pnpm && pnpm install --frozen-lockfile
+              run: |
+                npm install -g pnpm # Esto instala el gestor de paquetes pnpm
+                pnpm install --frozen-lockfile
 
             - name: "Contruir la aplicación"
               run: pnpm run build
