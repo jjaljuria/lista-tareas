@@ -1,4 +1,4 @@
-# Lista de Tareas
+# Lista de Tareas [![CI](https://github.com/jjaljuria/lista-tareas/actions/workflows/ci.yaml/badge.svg)](https://github.com/jjaljuria/lista-tareas/actions/workflows/ci.yaml) [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
 
 Este proyecto es una aplicación sencilla de lista de tareas construida con React. Permite a los usuarios agregar, visualizar y eliminar tareas, gestionando el estado de la aplicación con Redux y persistiendo los datos en el almacenamiento local del navegador.
 
