@@ -10,19 +10,24 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [20]
 
         steps:
             - name: "Verifica el Codigo"
               uses: actions/checkout@v4
 
-            - name: "Setup Node.js"
+            - name: "Instalar pnpm"
+              uses: pnpm/actions-setup@v4
+              with:
+                version: 10
+
+            - name: "Setup Node.js ${{ matrix.node-version }}"
               uses: actions/setup-node@v4
               with:
-                    node-version: '22.19.0'
+                    node-version: ${{ matrix.node-version }}
                     cache: 'pnpm'
-            
-            - name: "Instalar pnpm"
-              run: npm install -g pnpm
 
             - name: "Instalar dependencias del proyecto"
               run: pnpm install --frozen-lockfile
