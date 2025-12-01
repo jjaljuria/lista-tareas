@@ -8,6 +8,31 @@ on:
     workflow_dispatch:
 
 jobs:
+    test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [20]
+        steps:
+            - name: "Verifica el Codigo"
+              uses: actions/checkout@v4
+
+            - name: "Instalar pnpm"
+              uses: pnpm/action-setup@v4
+              with:
+                version: 10
+
+            - name: "Setup Node.js ${{ matrix.node-version }}"
+              uses: actions/setup-node@v4
+              with:
+                    node-version: ${{ matrix.node-version }}
+                    cache: 'pnpm'
+
+            - name: "Instalar dependencias del proyecto"
+              run: pnpm install --frozen-lockfile
+
+            - name: "Ejecutar Pruebas Unitarias"
+              run: pnpm run test
     build:
         runs-on: ubuntu-latest
         strategy:
