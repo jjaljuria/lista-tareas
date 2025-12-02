@@ -34,6 +34,7 @@ jobs:
             - name: "Ejecutar Pruebas Unitarias"
               run: pnpm run test
     build:
+        needs: test
         runs-on: ubuntu-latest
         strategy:
             matrix:
