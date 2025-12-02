@@ -43,7 +43,7 @@ describe('Item Component', () => {
         vi.clearAllMocks()
     });
 
-    test.skip('should not dispatch if id is null', () => {
+    test('should not dispatch if id is null', () => {
         const mockDatosItemWithoutId = {
             ...mockDatosItem,
             id: null,
