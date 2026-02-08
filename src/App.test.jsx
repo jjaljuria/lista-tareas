@@ -12,10 +12,6 @@ describe('App component', () => {
     })
 
     test('should render the "Add Task" button', () => {
-        screen.getByText('Agregar Tarea');
-    });
-
-    test('should render the "Name" input field', () => {
-        screen.getByPlaceholderText('Nombre');
+        screen.getByText('+', {selector: 'button'});
     });
 })

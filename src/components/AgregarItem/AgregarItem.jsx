@@ -19,12 +19,6 @@ export default function AgregarItem({onAdded}) {
 
         e.preventDefault();
 
-        const form = e.target
-        if(!form.checkValidity()){
-            form.reportValidity()
-            return;
-        }
-
         const nombre = nombreRef.current.value
         const descripcion = descripcionRef.current.value
         const fecha = fechaRef.current.value
@@ -50,7 +44,6 @@ export default function AgregarItem({onAdded}) {
         descripcionRef.current.value = '';
         fechaRef.current.value = newTask.fecha;
 
-        if(onAdded) onAdded()
     }
 
     useEffect(() => {
