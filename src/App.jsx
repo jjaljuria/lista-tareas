@@ -5,6 +5,7 @@ import store from './components/store/store.js';
 import './App.css'
 import CustomModal from './components/Modal/CustomModal.jsx';
 import Button from 'react-bootstrap/Button';
+import { PlusCircle } from 'react-bootstrap-icons'
 
 export default function App() {
 
@@ -44,8 +45,8 @@ export default function App() {
             <div className="container">
                 <div className='row'>
                     <section className="col-12 col-md-6">
-                        <Button variant="primary" onClick={handleShow} >
-                            +
+                        <Button variant="primary" onClick={handleShow} aria-label="Agregar tarea">
+                            <PlusCircle size={25} />
                         </Button>
 
                         <CustomModal show={show} onHide={handleClose}>

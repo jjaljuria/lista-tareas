@@ -12,6 +12,7 @@ describe('App component', () => {
     })
 
     test('should render the "Add Task" button', () => {
-        screen.getByText('+', {selector: 'button'});
+        screen.getByRole('button', { name: /agregar tarea/i });
+
     });
 })
