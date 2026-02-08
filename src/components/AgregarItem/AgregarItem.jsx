@@ -3,7 +3,7 @@ import { v7 } from 'uuid'
 import moment from 'moment';
 import store from '../store/store';
 
-export default function AgregarItem() {
+export default function AgregarItem({onAdded}) {
 
     const nombreRef = useRef(null);//input text debajo del boton con el nombre
     const descripcionRef = useRef(null);//input text con la descripcion
@@ -18,6 +18,12 @@ export default function AgregarItem() {
     const manejadorFormulario = (e) => {
 
         e.preventDefault();
+
+        const form = e.target
+        if(!form.checkValidity()){
+            form.reportValidity()
+            return;
+        }
 
         const nombre = nombreRef.current.value
         const descripcion = descripcionRef.current.value
@@ -43,6 +49,8 @@ export default function AgregarItem() {
         nombreRef.current.value = '';
         descripcionRef.current.value = '';
         fechaRef.current.value = newTask.fecha;
+
+        if(onAdded) onAdded()
     }
 
     useEffect(() => {
@@ -65,7 +73,7 @@ export default function AgregarItem() {
 
 
     return (
-        <form role="form" className="my-1 mx-1" onSubmit={manejadorFormulario}>
+        <form noValidate role="form" className="my-1 mx-1" onSubmit={manejadorFormulario}>
             <div className="row">
                 <input type="text" placeholder="Nombre" className="col-12 col-md-3 form-control" required maxLength="50" ref={nombreRef}></input>
                 <input type="text" placeholder="Descripcion" className="col-12 col-md-3 form-control" required maxLength="50" ref={descripcionRef}></input>
