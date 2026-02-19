@@ -1,3 +1,10 @@
+/* Color primario rojo (sobrescribe el azul de Bootstrap) */
+:root,
+[data-bs-theme="light"] {
+    --bs-primary: #dc3545;
+    --bs-primary-rgb: 220, 53, 69;
+}
+
 html {
     font-size: 16px;
 }
@@ -43,4 +50,14 @@ code {
     background-color: #28a745 !important;
     /* Verde de éxito de Bootstrap */
     border-color: #28a745 !important;
+}
+
+.btn-primary {
+    background-color: #f57c00 !important; /* Naranja más oscuro */
+    border-color: #f57c00 !important; /* Naranja más oscuro */
+}
+
+.btn-primary:hover {
+    background-color: #e65100 !important; /* Naranja aún más oscuro para el hover */
+    border-color: #e65100 !important; /* Naranja aún más oscuro para el hover */
 }

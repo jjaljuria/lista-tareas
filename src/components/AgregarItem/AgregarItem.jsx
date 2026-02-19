@@ -66,7 +66,7 @@ export default function AgregarItem({onAdded}) {
 
 
     return (
-        <form noValidate role="form" className="my-1 mx-1" onSubmit={manejadorFormulario}>
+        <form role="form" className="my-1 mx-1" onSubmit={manejadorFormulario}>
             <div className="row">
                 <input type="text" placeholder="Nombre" className="col-12 col-md-3 form-control" required maxLength="50" ref={nombreRef}></input>
                 <input type="text" placeholder="Descripcion" className="col-12 col-md-3 form-control" required maxLength="50" ref={descripcionRef}></input>
